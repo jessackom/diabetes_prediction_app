@@ -77,16 +77,16 @@ class Config:
     # This list should match exactly what your trained model expects
     # Students may need to modify this based on their specific model
     MODEL_FEATURES = [
-        'age',    # Patient age (normalized)
-        'sex',    # Patient sex (normalized)
-        'bmi',    # Body Mass Index (normalized)
-        'bp',     # Average blood pressure (normalized)
-        's1',     # Total serum cholesterol (normalized)
-        's2',     # Low-density lipoproteins (normalized)
-        's3',     # High-density lipoproteins (normalized)
-        's4',     # Total cholesterol/HDL ratio (normalized)
-        's5',     # Log of serum triglycerides (normalized)
-        's6'      # Blood sugar level (normalized)
+    'ProductionVolume',    # batch size — often correlates with defect probability
+    'ProductionCost',      # cost can proxy work/quality investment
+    'SupplierQuality',     # supplier input quality rating (high signal)
+    'QualityScore',        # internal QA score (strong signal)
+    'DefectRate',          # historical defect % for similar batches (very high signal)
+    'MaintenanceHours',    # maintenance time — equipment health proxy
+    'DowntimePercentage',  # downtime during that run — process interruptions
+    'WorkerProductivity'   # labor efficiency — human error proxy
+]
+
     ]
 
     # ============================================================================
@@ -94,7 +94,7 @@ class Config:
     # ============================================================================
 
     # Application name and version for display purposes
-    APP_NAME = os.getenv('APP_NAME', 'Diabetes Progression Predictor')
+    APP_NAME = os.getenv('APP_NAME', 'Manufacturing Defect Predictor')
     APP_VERSION = os.getenv('APP_VERSION', '1.0.0')
 
     # ============================================================================
@@ -157,7 +157,7 @@ class Config:
         3. Making it easy for developers to verify their configuration
         """
         print("\n" + "="*70)
-        print("DIABETES PREDICTION APP - CONFIGURATION STATUS")
+        print("MANUFACTURING DEFECT PREDICTION APP - CONFIGURATION STATUS")
         print("="*70)
         print(f"App Name: {cls.APP_NAME}")
         print(f"Version: {cls.APP_VERSION}")
